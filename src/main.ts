@@ -14,18 +14,4 @@ export class LuckyExcel {
       }, reject)
     );
   }
-
-  static transformExcelToLuckyByUrl(
-    url: string,
-    name: string,
-  ): Promise<LuckyFile> {
-    const handleZip = new HandleZip();
-    return new Promise((resolve, reject) =>
-      handleZip.unzipFileByUrl(url, (files: IuploadfileList) => {
-        const luckyFile = new LuckyFile(files, name);
-        luckyFile.Parse();
-        resolve(luckyFile);
-      }, reject)
-    );
-  }
 }
