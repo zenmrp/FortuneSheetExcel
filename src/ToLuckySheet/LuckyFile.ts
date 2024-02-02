@@ -358,13 +358,13 @@ export class LuckyFile extends LuckyFileBase {
         this.getSheetsFull();
     }
 
-    private toJsonString(file:ILuckyFile):string{
-        let LuckyOutPutFile = new LuckyFileBase();
-        LuckyOutPutFile.info = file.info;
+    toJsonString(): string {
+        const LuckyOutPutFile = new LuckyFileBase();
+        LuckyOutPutFile.info = this.info;
         LuckyOutPutFile.sheets = [];
 
-        file.sheets.forEach((sheet)=>{
-            let sheetout = new LuckySheetBase();
+        this.sheets.forEach((sheet) => {
+            const sheetout = new LuckySheetBase();
             //let attrName = ["name","color","config","index","status","order","row","column","luckysheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","luckysheet_conditionformat_save","freezen","calcChain"];
 
             if(sheet.name!=null){
@@ -433,8 +433,8 @@ export class LuckyFile extends LuckyFileBase {
             if(sheet.celldata!=null){
                 // sheetout.celldata = sheet.celldata;
                 sheetout.celldata = [];
-                sheet.celldata.forEach((cell)=>{
-                    let cellout = new LuckySheetCelldataBase();
+                sheet.celldata.forEach((cell) => {
+                    const cellout = new LuckySheetCelldataBase();
                     cellout.r = cell.r;
                     cellout.c = cell.c;
                     cellout.v = cell.v;
