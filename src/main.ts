@@ -1,51 +1,31 @@
 import { LuckyFile } from "./ToLuckySheet/LuckyFile.js";
-import {HandleZip} from './HandleZip.js';
+import { HandleZip } from "./HandleZip.js";
 
-import {IuploadfileList} from "./ICommon.js";
+import { IuploadfileList } from "./ICommon.js";
 
-export class LuckyExcel{
-    static transformExcelToLucky(excelFile: File,
-        callback?: (files: IuploadfileList, fs?: string) => void,
-        errorHandler?: (err: Error) => void) {
-        let handleZip:HandleZip = new HandleZip(excelFile);
-        
-        handleZip.unzipFile(function (files: IuploadfileList) {
-            let luckyFile = new LuckyFile(files, excelFile.name);
-            let luckysheetfile = luckyFile.Parse();
-            let exportJson = JSON.parse(luckysheetfile);
-            if (callback != undefined) {
-                callback(exportJson, luckysheetfile);
-            }
-        },
-        function(err:Error){
-            if (errorHandler) {
-                errorHandler(err);
-              } else {
-                console.error(err);
-              }
-        });
-    }
+export class LuckyExcel {
+  static transformExcelToLucky(excelFile: File): Promise<LuckyFile> {
+    const handleZip = new HandleZip(excelFile);
+    return new Promise((resolve, reject) =>
+      handleZip.unzipFile((files: IuploadfileList) => {
+        const luckyFile = new LuckyFile(files, excelFile.name);
+        luckyFile.Parse();
+        resolve(luckyFile);
+      }, reject)
+    );
+  }
 
-    static transformExcelToLuckyByUrl(
-        url: string,
-        name: string,
-        callBack?: (files: IuploadfileList, fs?: string) => void,
-        errorHandler?: (err: Error) => void) {
-        let handleZip:HandleZip = new HandleZip();
-        handleZip.unzipFileByUrl(url, function(files:IuploadfileList){
-            let luckyFile = new LuckyFile(files, name);
-            let luckysheetfile = luckyFile.Parse();
-            let exportJson = JSON.parse(luckysheetfile);
-            if(callBack != undefined){
-                callBack(exportJson, luckysheetfile);
-            }
-        },
-        function(err:Error){
-            if (errorHandler) {
-                errorHandler(err);
-              } else {
-                console.error(err);
-              }
-        });
-    }
+  static transformExcelToLuckyByUrl(
+    url: string,
+    name: string,
+  ): Promise<LuckyFile> {
+    const handleZip = new HandleZip();
+    return new Promise((resolve, reject) =>
+      handleZip.unzipFileByUrl(url, (files: IuploadfileList) => {
+        const luckyFile = new LuckyFile(files, name);
+        luckyFile.Parse();
+        resolve(luckyFile);
+      }, reject)
+    );
+  }
 }

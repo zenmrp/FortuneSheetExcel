@@ -353,40 +353,9 @@ export class LuckyFile extends LuckyFileBase {
     /**
     * @return LuckySheet file json
     */
-    Parse():string{
-        // let xml = this.readXml;
-        // for(let key in this.sheetNameList){
-        //     let sheetName=this.sheetNameList[key];
-        //     let sheetColumns = xml.getElementsByTagName("row/c/f", sheetName);
-        //     console.log(sheetColumns);
-        // }
-        // return "";
-
+    Parse(){
         this.getWorkBookInfo();
         this.getSheetsFull();
-
-        // for(let i=0;i<this.sheets.length;i++){
-        //     let sheet = this.sheets[i];
-        //     let _borderInfo = sheet.config._borderInfo;
-        //     if(_borderInfo==null){
-        //         continue;
-        //     }
-        //     let _borderInfoKeys = Object.keys(_borderInfo);
-        //     _borderInfoKeys.sort();
-        //     for(let a=0;a<_borderInfoKeys.length;a++){
-        //         let key = parseInt(_borderInfoKeys[a]);
-        //         let b = _borderInfo[key];
-        //         if(b.cells.length==0){
-        //             continue;
-        //         }
-        //         if(sheet.config.borderInfo==null){
-        //             sheet.config.borderInfo = [];
-        //         }
-        //         sheet.config.borderInfo.push(b);
-        //     }
-        // }
-
-        return this.toJsonString(this);
     }
 
     private toJsonString(file:ILuckyFile):string{
