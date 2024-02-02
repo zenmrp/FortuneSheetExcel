@@ -2,13 +2,9 @@
   "name": "luckyexcel",
   "version": "1.0.0",
   "description": "An excel import and export library adapted to Luckysheet",
-  "main": "dist/luckyexcel.cjs.js",
-  "module": "dist/luckyexcel.esm.js",
-  "browser": "dist/luckyexcel.umd.js",
-  "scripts": {
-    "build": "gulp build",
-    "dev": "gulp dev"
-  },
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "type": "module",
   "keywords": [
     "Luckysheet",
     "excel"

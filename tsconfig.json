@@ -1,20 +1,21 @@
 {
-    "files": [
-        "src/main.umd.ts",
-        "src/main.esm.ts"
-    ],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "ES5",
-        "outDir": "output/",
-        "esModuleInterop": true,
-        "module": "commonjs"
-    },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+  "files": [
+    "src/main.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "declaration": true,
+    "target": "es6",
+    "outDir": "dist/",
+    "esModuleInterop": true,
+    "module": "es6",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
