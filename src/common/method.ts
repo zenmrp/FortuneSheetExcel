@@ -1,6 +1,6 @@
-import { columeHeader_word, columeHeader_word_index } from "./constant";
-import { IluckySheetSelection } from "../ToLuckySheet/ILuck";
-import { IattributeList, stringToNum} from "../ICommon";
+import { columeHeader_word, columeHeader_word_index } from "./constant.js";
+import { IluckySheetSelection } from "../ToLuckySheet/ILuck.js";
+import { IattributeList, stringToNum} from "../ICommon.js";
 
 
 export function getRangetxt(range:IluckySheetSelection, sheettxt:string) {

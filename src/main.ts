@@ -1,9 +1,9 @@
-import { LuckyFile } from "./ToLuckySheet/LuckyFile";
-// import {SecurityDoor,Car} from './content';
+import { LuckyFile } from "./ToLuckySheet/LuckyFile.js";
+// import {SecurityDoor,Car} from './content.js';
 
-import {HandleZip} from './HandleZip';
+import {HandleZip} from './HandleZip.js';
 
-import {IuploadfileList} from "./ICommon";
+import {IuploadfileList} from "./ICommon.js";
 import { fstat } from "fs";
 
 // //demo

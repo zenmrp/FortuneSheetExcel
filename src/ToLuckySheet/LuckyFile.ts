@@ -1,11 +1,11 @@
-﻿import { ILuckyFile,IluckySheetRowAndColumnHidden,IluckySheetRowAndColumnLen} from "./ILuck";
-import { LuckySheet} from "./LuckySheet";
-import {IuploadfileList, IattributeList} from "../ICommon";
-import {workBookFile, coreFile, appFile, stylesFile, sharedStringsFile,numFmtDefault,theme1File,calcChainFile,workbookRels, numFmtDefaultMap} from "../common/constant";
-import { ReadXml,IStyleCollections,Element } from "./ReadXml";
-import {getXmlAttibute} from "../common/method";
-import { LuckyFileBase,LuckyFileInfo,LuckySheetBase,LuckySheetCelldataBase,LuckySheetCelldataValue,LuckySheetCellFormat } from "./LuckyBase";
-import {ImageList} from "./LuckyImage";
+﻿import { ILuckyFile,IluckySheetRowAndColumnHidden,IluckySheetRowAndColumnLen} from "./ILuck.js";
+import { LuckySheet} from "./LuckySheet.js";
+import {IuploadfileList, IattributeList} from "../ICommon.js";
+import {workBookFile, coreFile, appFile, stylesFile, sharedStringsFile,numFmtDefault,theme1File,calcChainFile,workbookRels, numFmtDefaultMap} from "../common/constant.js";
+import { ReadXml,IStyleCollections,Element } from "./ReadXml.js";
+import {getXmlAttibute} from "../common/method.js";
+import { LuckyFileBase,LuckyFileInfo,LuckySheetBase,LuckySheetCelldataBase,LuckySheetCelldataValue,LuckySheetCellFormat } from "./LuckyBase.js";
+import {ImageList} from "./LuckyImage.js";
 
 export class LuckyFile extends LuckyFileBase {
 

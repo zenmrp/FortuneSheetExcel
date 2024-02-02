@@ -1,11 +1,11 @@
-import { IluckyImage } from "./ILuck";
-import {LuckySheetCelldata} from "./LuckyCell";
-import { IuploadfileList, IattributeList } from "../ICommon";
-import {getXmlAttibute, getColumnWidthPixel, fromulaRef,getRowHeightPixel,getcellrange} from "../common/method";
-import {borderTypes} from "../common/constant";
-import { ReadXml, IStyleCollections, Element,getColor } from "./ReadXml";
-import { LuckyImageBase } from "./LuckyBase";
-import { UDOC,FromEMF,ToContext2D  } from "../common/emf";
+import { IluckyImage } from "./ILuck.js";
+import {LuckySheetCelldata} from "./LuckyCell.js";
+import { IuploadfileList, IattributeList } from "../ICommon.js";
+import {getXmlAttibute, getColumnWidthPixel, fromulaRef,getRowHeightPixel,getcellrange} from "../common/method.js";
+import {borderTypes} from "../common/constant.js";
+import { ReadXml, IStyleCollections, Element,getColor } from "./ReadXml.js";
+import { LuckyImageBase } from "./LuckyBase.js";
+import { UDOC,FromEMF,ToContext2D  } from "../common/emf.js";
 
 
 export class ImageList {

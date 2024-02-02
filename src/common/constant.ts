@@ -1,4 +1,4 @@
-import {stringToNum, IattributeList, numTostring, IDataVerificationMap, IDataVerificationType2Map} from "../ICommon";
+import {stringToNum, IattributeList, numTostring, IDataVerificationMap, IDataVerificationType2Map} from "../ICommon.js";
 
 export const columeHeader_word:string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 

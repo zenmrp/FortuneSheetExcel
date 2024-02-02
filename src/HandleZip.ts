@@ -1,6 +1,6 @@
 import JSZip from "jszip";
-import {IuploadfileList} from "./ICommon";
-import {getBinaryContent} from "./common/method"
+import {IuploadfileList} from "./ICommon.js";
+import {getBinaryContent} from "./common/method.js"
 
 
 export class HandleZip{
