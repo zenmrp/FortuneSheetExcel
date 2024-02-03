@@ -1,5 +1,5 @@
 import React from 'react';
-import { LuckyExcel } from '../main.js';
+import { transformExcelToFortune } from '../main.js';
 import { Sheet } from "@fortune-sheet/core";
 import { Workbook } from "@fortune-sheet/react";
 import "@fortune-sheet/react/dist/index.css"
@@ -20,7 +20,7 @@ export const Page: React.FC = () => {
       <header>
         Import XLSX: <input type="file" onChange={async (e) => {
           const xls = await e.target.files[0].arrayBuffer()
-          const lsh = await LuckyExcel.transformExcelToLucky(xls)
+          const lsh = await transformExcelToFortune(xls)
           setSheets(lsh.sheets)
           setKey(k => k + 1)
         }}/>
