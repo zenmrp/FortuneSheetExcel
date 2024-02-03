@@ -7,7 +7,7 @@ import {getXmlAttibute} from "../common/method.js";
 import { LuckyFileBase,LuckyFileInfo,LuckySheetBase,LuckySheetCelldataBase,LuckySheetCelldataValue,LuckySheetCellFormat } from "./LuckyBase.js";
 import {ImageList} from "./LuckyImage.js";
 
-export class LuckyFile extends LuckyFileBase {
+export class LuckyFile {
 
     private files:IuploadfileList
     private sheetNameList:IattributeList
@@ -17,9 +17,10 @@ export class LuckyFile extends LuckyFileBase {
     private sharedStrings:Element[]
     private calcChain:Element[]
     private imageList:ImageList
+    private sheets?:LuckySheet[]
+    private info?:LuckyFileInfo
 
     constructor(files:IuploadfileList, fileName:string) {
-        super();
         this.files = files;
         this.fileName = fileName;
         this.readXml = new ReadXml(files);
@@ -358,12 +359,12 @@ export class LuckyFile extends LuckyFileBase {
         this.getSheetsFull();
     }
 
-    toJsonString(): string {
+    serialize(): LuckyFileBase {
         const LuckyOutPutFile = new LuckyFileBase();
         LuckyOutPutFile.info = this.info;
         LuckyOutPutFile.sheets = [];
 
-        this.sheets.forEach((sheet) => {
+        for (const sheet of this.sheets!) {
             const sheetout = new LuckySheetBase();
             //let attrName = ["name","color","config","index","status","order","row","column","luckysheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","luckysheet_conditionformat_save","freezen","calcChain"];
 
@@ -431,15 +432,19 @@ export class LuckyFile extends LuckyFileBase {
             }
 
             if(sheet.celldata!=null){
-                // sheetout.celldata = sheet.celldata;
+                // Plain objects matter here
                 sheetout.celldata = [];
-                sheet.celldata.forEach((cell) => {
-                    const cellout = new LuckySheetCelldataBase();
-                    cellout.r = cell.r;
-                    cellout.c = cell.c;
-                    cellout.v = cell.v;
-                    sheetout.celldata.push(cellout);
-                });
+                for (let { r, c, v } of sheet.celldata) {
+                    if (typeof v === 'object') {
+                        const {...xv} = v;
+                        v = xv;
+                        if (v.ct) {
+                            const {...ct} = v.ct;
+                            v.ct = ct;
+                        }
+                    }
+                    sheetout.celldata.push({ r, c, v });
+                }
             }
 
             if(sheet.chart!=null){
@@ -483,9 +488,9 @@ export class LuckyFile extends LuckyFileBase {
             }
             
             LuckyOutPutFile.sheets.push(sheetout);
-        });
+        }
 
-        return JSON.stringify(LuckyOutPutFile);
+        return LuckyOutPutFile;
     }
 
 
