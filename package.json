@@ -17,11 +17,27 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@fortune-sheet/react": "^0.19.2",
+    "@storybook/addon-essentials": "^7.6.12",
+    "@storybook/addon-interactions": "^7.6.12",
+    "@storybook/addon-links": "^7.6.12",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.12",
+    "@storybook/react": "^7.6.12",
+    "@storybook/react-vite": "^7.6.12",
+    "@storybook/test": "^7.6.12",
     "@types/node": "^20.11.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.12",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "dayjs": "^1.11.10",
     "jszip": "^3.10.1"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   }
 }
