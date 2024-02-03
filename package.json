@@ -1,19 +1,21 @@
 {
-  "name": "luckyexcel",
+  "name": "FortuneSheetExcel",
   "version": "1.0.0",
-  "description": "An excel import and export library adapted to Luckysheet",
+  "description": "An Excel-to-FortuneSheet import library",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "type": "module",
   "keywords": [
-    "Luckysheet",
+    "luckysheet",
+    "fortunesheet",
+    "spreadsheet",
     "excel"
   ],
   "author": "msoffice2@126.com",
-  "homepage": "https://github.com/mengshukeji/Luckyexcel",
+  "homepage": "https://github.com/zenmrp/FortuneSheetExcel",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mengshukeji/Luckyexcel.git"
+    "url": "https://github.com/zenmrp/FortuneSheetExcel.git"
   },
   "license": "MIT",
   "devDependencies": {
