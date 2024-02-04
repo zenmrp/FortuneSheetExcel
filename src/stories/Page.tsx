@@ -21,6 +21,7 @@ export const Page: React.FC = () => {
         Import XLSX: <input type="file" onChange={async (e) => {
           const xls = await e.target.files[0].arrayBuffer()
           const lsh = await transformExcelToFortune(xls)
+          console.log(lsh)
           setSheets(lsh.sheets)
           setKey(k => k + 1)
         }}/>

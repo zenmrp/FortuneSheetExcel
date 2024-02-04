@@ -431,6 +431,17 @@ export class LuckyFile {
                 sheetout.defaultRowHeight = sheet.defaultRowHeight;
             }
 
+            // https://github.com/ruilisi/fortune-sheet/issues/299
+            const merges = new Map();
+            if (sheet.config?.merge) {
+                for (const { r, c, rs, cs } of Object.values(sheet.config.merge)) {
+                    merges.set(r + '_' + c, { r, c, rs, cs });
+                    for (let i = r + 1; i < r + rs; i++)
+                        for (let j = c + 1; j < c + cs; j++)
+                            merges.set(i + '_' + j, { r, c });
+                }
+            }
+
             if(sheet.celldata!=null){
                 // Plain objects matter here
                 sheetout.celldata = [];
@@ -441,6 +452,11 @@ export class LuckyFile {
                         if (v.ct) {
                             const {...ct} = v.ct;
                             v.ct = ct;
+                        }
+                        if (merges.has(r + '_' + c)) {
+                            v.mc = merges.get(r + '_' + c)
+                            if (v.mc.r !== r || v.mc.c !== c)
+                                v = {mc: v.mc};
                         }
                     }
                     sheetout.celldata.push({ r, c, v });
