@@ -148,7 +148,7 @@ export interface IluckysheetCalcChain{
 export interface IluckySheetCelldata{
     r:number,//cell row number
     c:number,//cell column number
-    v:IluckySheetCelldataValue | string | null, //cell value
+    v:IluckySheetCelldataValue | { mc: IluckySheetCelldataValueMerge, ct?: ILuckySheetCellFormat } | string | null, //cell value
 }
 
 export interface IluckySheetCelldataValue{
