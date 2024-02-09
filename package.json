@@ -1,6 +1,6 @@
 {
   "name": "@zenmrp/fortune-sheet-excel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An Excel-to-FortuneSheet import library",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -38,6 +38,7 @@
     "jszip": "^3.10.1"
   },
   "scripts": {
+    "prepare": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   }
