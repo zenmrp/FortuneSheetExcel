@@ -1,9 +1,9 @@
-export interface ILuckyFile{
-    info:ILuckyFileInfo,//File information, name,password,date,createor etc. 
-    sheets:IluckySheet[],//Sheets, include all sheet data
+export interface IFortuneFile{
+    info:IFortuneFileInfo,//File information, name,password,date,createor etc. 
+    sheets:IfortuneSheet[],//Sheets, include all sheet data
 }
 
-export interface ILuckyFileInfo{
+export interface IFortuneFileInfo{
     name:string,// File name
     creator:string,//Create user
     lastmodifiedby:string,//Edit user
@@ -13,10 +13,10 @@ export interface ILuckyFileInfo{
     appversion:string,//Excel version, Is it necessary?
 }
 
-export interface IluckySheet{
+export interface IfortuneSheet{
     name:string,// Sheet name, it will show on sheet bar, must be unique
     color:string,// Sheet color, it will show on sheet bar
-    config?:IluckySheetConfig, // Row height, column width, hidden, and so on
+    config?:IfortuneSheetConfig, // Row height, column width, hidden, and so on
     id:string, //A sheet uniquely identifies, 
     status:string, //If 1 , it means current shown sheet, else means hidden
     order:string, //Order of sheet
@@ -24,20 +24,20 @@ export interface IluckySheet{
     column:number, // Sheet the number of columns, contain blank cell
     // visibledatarow:number[],
     // visibledatacolumn:number[],
-    luckysheet_select_save?:IluckySheetSelection[],//selection defines
+    fortunesheet_select_save?:IfortuneSheetSelection[],//selection defines
     scrollLeft:number,//horizen scroll offset
     scrollTop:number,//verticel scroll offset
 
-    celldata?:IluckySheetCelldata[],// cells
-    chart?:IluckySheetChart[],
+    celldata?:IfortuneSheetCelldata[],// cells
+    chart?:IfortuneSheetChart[],
 
     isPivotTable:boolean,
-    pivotTable?:IluckySheetPivotTable,
+    pivotTable?:IfortuneSheetPivotTable,
 
-    luckysheet_conditionformat_save?:IluckysheetConditionFormat[],
-    freezen?:IluckysheetFrozen,
+    fortunesheet_conditionformat_save?:IfortunesheetConditionFormat[],
+    freezen?:IfortunesheetFrozen,
 
-    calcChain?:IluckysheetCalcChain[],
+    calcChain?:IfortunesheetCalcChain[],
     
     zoomRatio:number, //sheet zoom ratio 10%-400%
 
@@ -46,40 +46,40 @@ export interface IluckySheet{
     defaultColWidth:number, //cloumn width pixel
     defaultRowHeight:number, //row height pixel
 
-    images:IluckyImages,//image list
+    images:IfortuneImages,//image list
     
-    dataVerification: IluckysheetDataVerification;
-		hyperlink: IluckysheetHyperlink, // hyperlinks
+    dataVerification: IfortunesheetDataVerification;
+		hyperlink: IfortunesheetHyperlink, // hyperlinks
 		hide: number; // sheet hide
 }
 
-//luckysheet general selection
-export interface IluckySheetSelection{
+//fortunesheet general selection
+export interface IfortuneSheetSelection{
     row:number[], //selection start row and end row
     column:number[], //selection start column and end column
     sheetIndex:number
 }
 
-export interface IluckySheetChart{
+export interface IfortuneSheetChart{
     
 }
 
 //pivot table interface
-export interface IluckySheetPivotTable{
-    pivot_select_save:IluckySheetSelection,//Pivot table data source range
+export interface IfortuneSheetPivotTable{
+    pivot_select_save:IfortuneSheetSelection,//Pivot table data source range
     pivotDataSheetIndex:string | undefined, //data source sheet index, index is unique id
-    column:IluckySheetPivotTableField[],// column area, include filed 
-    row:IluckySheetPivotTableField[], // row area, include filed 
-    filter:IluckySheetPivotTableField[], // filter area, include filed 
-    filterparm: IluckySheetPivotTablefilterParam,// save param after apply filter
-    values:IluckySheetPivotTableField[],
+    column:IfortuneSheetPivotTableField[],// column area, include filed 
+    row:IfortuneSheetPivotTableField[], // row area, include filed 
+    filter:IfortuneSheetPivotTableField[], // filter area, include filed 
+    filterparm: IfortuneSheetPivotTablefilterParam,// save param after apply filter
+    values:IfortuneSheetPivotTableField[],
     showType:string,
     pivotDatas:any[][],
     drawPivotTable:boolean,
     pivotTableBoundary:number[],
 }
 
-export interface IluckySheetPivotTableField{
+export interface IfortuneSheetPivotTableField{
     index: number,
     name: string,
     fullname: string,
@@ -87,72 +87,72 @@ export interface IluckySheetPivotTableField{
     nameindex: number
 }
 
-export interface IluckySheetPivotTablefilterParam{
-    [index:string]:IluckySheetPivotTablefilterParamItem
+export interface IfortuneSheetPivotTablefilterParam{
+    [index:string]:IfortuneSheetPivotTablefilterParamItem
 }
 
-export interface IluckySheetPivotTablefilterParamItem{
-    caljs:IluckySheetPivotTablefilterParamItemCaljs,
-    rowhidden:IluckySheetPivotTablefilterParamItemRowhidden,
-    selected:IluckySheetPivotTablefilterParamItemSelected,
+export interface IfortuneSheetPivotTablefilterParamItem{
+    caljs:IfortuneSheetPivotTablefilterParamItemCaljs,
+    rowhidden:IfortuneSheetPivotTablefilterParamItemRowhidden,
+    selected:IfortuneSheetPivotTablefilterParamItemSelected,
 }
 
-export interface IluckySheetPivotTablefilterParamItemCaljs{
+export interface IfortuneSheetPivotTablefilterParamItemCaljs{
     text: string,
     type: string,
     value: string,
     value1: string,
 }
 
-export interface IluckySheetPivotTablefilterParamItemRowhidden{
+export interface IfortuneSheetPivotTablefilterParamItemRowhidden{
     [index:number]:number
 }
 
-export interface IluckySheetPivotTablefilterParamItemSelected{
+export interface IfortuneSheetPivotTablefilterParamItemSelected{
     [index:number]:number
 }
 
 
-export interface IluckysheetFrozen{
+export interface IfortunesheetFrozen{
     horizen:number | undefined, //freeze horizen row number
     vertical:number | undefined, //freeze horizen column number
 }
 
-export interface IluckysheetConditionFormat{
+export interface IfortunesheetConditionFormat{
     type:string, //Option:defualt,databar,colorGradation,icons,
-    cellrange:IluckySheetSelection[],//Valid range
-    format:string[] | IluckysheetCFDefaultFormat | IluckysheetCFIconsFormat,//style
+    cellrange:IfortuneSheetSelection[],//Valid range
+    format:string[] | IfortunesheetCFDefaultFormat | IfortunesheetCFIconsFormat,//style
     conditionName: string | undefined,//Detailed settings,comparison parameters
-    conditionRange:IluckySheetSelection[],//Detailed settings,comparison range
+    conditionRange:IfortuneSheetSelection[],//Detailed settings,comparison range
     conditionValue:any[],//Detailed settings,comparison value
 }
 
-export interface IluckysheetCFDefaultFormat{
+export interface IfortunesheetCFDefaultFormat{
     textColor: string | undefined | null,
 	cellColor: string | undefined | null
 }
 
-export interface IluckysheetCFIconsFormat{
+export interface IfortunesheetCFIconsFormat{
     len: string | number,
     leftMin: string | number,
     top: string | number,
 }
 
-export interface IluckysheetCalcChain{
+export interface IfortunesheetCalcChain{
     r:number,
     c:number,
     id:string | undefined,
     // func?:any[],//[true, 152, "=SUBTOTAL(9,OFFSET(F15,ROW(F15:F18)-ROW(F15),1,3))"] 已经计算、终值、公式
 }
 
-export interface IluckySheetCelldata{
+export interface IfortuneSheetCelldata{
     r:number,//cell row number
     c:number,//cell column number
-    v:IluckySheetCelldataValue | { mc: IluckySheetCelldataValueMerge, ct?: ILuckySheetCellFormat } | string | null, //cell value
+    v:IfortuneSheetCelldataValue | { mc: IfortuneSheetCelldataValueMerge, ct?: IFortuneSheetCellFormat } | string | null, //cell value
 }
 
-export interface IluckySheetCelldataValue{
-    ct:ILuckySheetCellFormat | undefined, //celltype,Cell value format: text, time, etc.
+export interface IfortuneSheetCelldataValue{
+    ct:IFortuneSheetCellFormat | undefined, //celltype,Cell value format: text, time, etc.
     bg: string | undefined,//background,#fff000	
     ff: string | undefined,//fontfamily,
     fc: string | undefined,//fontcolor
@@ -163,7 +163,7 @@ export interface IluckySheetCelldataValue{
     un: number | undefined//underline, 0 Regular, 1 underlines, fonts
     vt: number | undefined,//Vertical alignment, 0 middle, 1 up, 2 down
     ht: number | undefined,//Horizontal alignment,0 center, 1 left, 2 right
-    mc: IluckySheetCelldataValueMerge | undefined, //Merge Cells
+    mc: IfortuneSheetCelldataValueMerge | undefined, //Merge Cells
     tr: number | undefined, //Text rotation,0: 0、1: 45 、2: -45、3 Vertical text、4: 90 、5: -90
     tb: number | undefined, //Text wrap,0 truncation, 1 overflow, 2 word wrap
     v: string | undefined, //Original value	
@@ -174,38 +174,38 @@ export interface IluckySheetCelldataValue{
 }
 
 
-export interface ILuckySheetCellFormat {
+export interface IFortuneSheetCellFormat {
     fa:string //Format definition string
     t:string // Cell Type
 }
 
-export interface IluckySheetCelldataValueMerge{
+export interface IfortuneSheetCelldataValueMerge{
     rs?:number, //row of merge cell  length, only main merge cell, every merge cell has only one main mergeCell
     cs?:number, //column of merge cell  length, only main merge cell, every merge cell has only one main mergeCell
     r:number, // main merge cell row Number, other cell link to main cell
     c:number, // main merge cell column Number, other cell link to main cell
 }
 
-//Lucky sheet config attribute
-export interface IluckySheetConfig{
-    merge?:IluckySheetConfigMerges, //merge handdler
-    // _borderInfo?: IMapluckySheetborderInfoCellForImp, //range border
-    borderInfo:IluckySheetborderInfoCellForImp[],//range border
-    rowlen?:IluckySheetRowAndColumnLen, // every row's height
-    columnlen?:IluckySheetRowAndColumnLen,// every column's width
-    rowhidden?:IluckySheetRowAndColumnHidden,//setting be hidden rows
-    colhidden?:IluckySheetRowAndColumnHidden,//setting be hidden columns
+//Fortune sheet config attribute
+export interface IfortuneSheetConfig{
+    merge?:IfortuneSheetConfigMerges, //merge handdler
+    // _borderInfo?: IMapfortuneSheetborderInfoCellForImp, //range border
+    borderInfo:IfortuneSheetborderInfoCellForImp[],//range border
+    rowlen?:IfortuneSheetRowAndColumnLen, // every row's height
+    columnlen?:IfortuneSheetRowAndColumnLen,// every column's width
+    rowhidden?:IfortuneSheetRowAndColumnHidden,//setting be hidden rows
+    colhidden?:IfortuneSheetRowAndColumnHidden,//setting be hidden columns
 
-    customHeight:IluckySheetRowAndColumnHidden,//user operate row height
-    customWidth:IluckySheetRowAndColumnHidden//user operate column width
+    customHeight:IfortuneSheetRowAndColumnHidden,//user operate row height
+    customWidth:IfortuneSheetRowAndColumnHidden//user operate column width
 }
 
 //Merge cells interface
-export interface IluckySheetConfigMerges{
-    [firstRange:string]:IluckySheetConfigMerge // "r_s":{ r,c,rs,cs } format, define a main merge cell 
+export interface IfortuneSheetConfigMerges{
+    [firstRange:string]:IfortuneSheetConfigMerge // "r_s":{ r,c,rs,cs } format, define a main merge cell 
 }
 //Merge cell interface
-export interface IluckySheetConfigMerge{
+export interface IfortuneSheetConfigMerge{
     r: number,
     c: number,
     rs: number,
@@ -213,51 +213,51 @@ export interface IluckySheetConfigMerge{
 }
 
 //Border cell interface
-export interface IluckySheetborderInfoCell{
+export interface IfortuneSheetborderInfoCell{
     rangeType:string,
-    value:IluckySheetborderInfoCellValue,
+    value:IfortuneSheetborderInfoCellValue,
 }
-export interface IluckySheetborderInfoCellValue{
+export interface IfortuneSheetborderInfoCellValue{
     row_index: number,
     col_index: number,
-    l: IluckySheetborderInfoCellValueStyle,
-    r: IluckySheetborderInfoCellValueStyle,
-    t: IluckySheetborderInfoCellValueStyle,
-    b: IluckySheetborderInfoCellValueStyle
+    l: IfortuneSheetborderInfoCellValueStyle,
+    r: IfortuneSheetborderInfoCellValueStyle,
+    t: IfortuneSheetborderInfoCellValueStyle,
+    b: IfortuneSheetborderInfoCellValueStyle
 }
-export interface IluckySheetborderInfoCellValueStyle{
+export interface IfortuneSheetborderInfoCellValueStyle{
     "style": number,
     "color": string
 }
 
 //border range interface
-export interface IluckySheetborderInfoRange{
+export interface IfortuneSheetborderInfoRange{
     rangeType:string,
     borderType:string,
     style:string,
     color:string,
-    range:IluckySheetSelection[],
+    range:IfortuneSheetSelection[],
 }
 
 //Border cell interface for import
-export interface IluckySheetborderInfoCellForImp{
+export interface IfortuneSheetborderInfoCellForImp{
     rangeType:string,
     cells?:string[],
-    value:IluckySheetborderInfoCellValue,
+    value:IfortuneSheetborderInfoCellValue,
 }
 
 //Border cell interface for import
-export interface IMapluckySheetborderInfoCellForImp{
-    [index:number]:IluckySheetborderInfoCellForImp 
+export interface IMapfortuneSheetborderInfoCellForImp{
+    [index:number]:IfortuneSheetborderInfoCellForImp 
 }
 
 //row length and column length interface
-export interface IluckySheetRowAndColumnLen{
+export interface IfortuneSheetRowAndColumnLen{
     [index:string]:number 
 }
 
 //row and column hidden interface
-export interface IluckySheetRowAndColumnHidden{
+export interface IfortuneSheetRowAndColumnHidden{
     [index:string]:number
 }
 
@@ -274,10 +274,10 @@ export interface IFormulaCellValue{
     ref:string
     si:string
     fv:string
-    cellValue:IluckySheetCelldata
+    cellValue:IfortuneSheetCelldata
 }
 
-export interface ILuckyInlineString {
+export interface IFortuneInlineString {
     ff:string | undefined //font family
     fc:string | undefined//font color
     fs:number | undefined//font size
@@ -292,10 +292,10 @@ export interface ILuckyInlineString {
 
 
 //Image
-export interface IluckyImage {
-    border: IluckyImageBorder
-    crop: IluckyImageCrop
-    default: IluckyImageDefault
+export interface IfortuneImage {
+    border: IfortuneImageBorder
+    crop: IfortuneImageCrop
+    default: IfortuneImageDefault
 
     fixedLeft: number
     fixedTop: number
@@ -306,29 +306,29 @@ export interface IluckyImage {
     type: string
 }
 
-export interface IluckyImageBorder {
+export interface IfortuneImageBorder {
     color: string
     radius: number
     style: string
     width: number
 }
 
-export interface IluckyImageCrop {
+export interface IfortuneImageCrop {
     height: number
     offsetLeft: number
     offsetTop: number
     width: number
 }
 
-export interface IluckyImageDefault {
+export interface IfortuneImageDefault {
     height: number
     left: number
     top: number
     width: number
 }
 
-export interface IluckyImages {
-    [index:string]:IluckyImage
+export interface IfortuneImages {
+    [index:string]:IfortuneImage
 }
 
 
@@ -347,12 +347,12 @@ export interface IformulaListItem{
 
 
 // DataVerification
-export interface IluckysheetDataVerification {
-  [key: string]: IluckysheetDataVerificationValue;
+export interface IfortunesheetDataVerification {
+  [key: string]: IfortunesheetDataVerificationValue;
 }
 
-export interface IluckysheetDataVerificationValue {
-  type: IluckysheetDataVerificationType;
+export interface IfortunesheetDataVerificationValue {
+  type: IfortunesheetDataVerificationType;
   type2: string | null;
   value1: string | number | null;
   value2: string | number | null;
@@ -363,7 +363,7 @@ export interface IluckysheetDataVerificationValue {
   hintText: string;
 }
 
-export type IluckysheetDataVerificationType =
+export type IfortunesheetDataVerificationType =
   | "dropdown"
   | "checkbox"
   | "number"
@@ -374,15 +374,15 @@ export type IluckysheetDataVerificationType =
   | "date"
   | "validity";
 
-export interface IluckysheetHyperlink {
-    [key: string]: IluckysheetHyperlinkValue;
+export interface IfortunesheetHyperlink {
+    [key: string]: IfortunesheetHyperlinkValue;
 }
 
-export interface IluckysheetHyperlinkValue {
+export interface IfortunesheetHyperlinkValue {
     linkAddress: string;
     linkTooltip: string;
-    linkType: IluckysheetHyperlinkType;
+    linkType: IfortunesheetHyperlinkType;
     display: string;
 }
 
-export type IluckysheetHyperlinkType = "internal" | "external";
+export type IfortunesheetHyperlinkType = "internal" | "external";

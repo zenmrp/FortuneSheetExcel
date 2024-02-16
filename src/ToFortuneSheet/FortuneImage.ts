@@ -1,10 +1,10 @@
-import { IluckyImage } from "./ILuck.js";
-import {LuckySheetCelldata} from "./LuckyCell.js";
+import { IfortuneImage } from "./IFortune.js";
+import {FortuneSheetCelldata} from "./FortuneCell.js";
 import { IuploadfileList, IattributeList } from "../ICommon.js";
 import {getXmlAttibute, getColumnWidthPixel, fromulaRef,getRowHeightPixel,getcellrange} from "../common/method.js";
 import {borderTypes} from "../common/constant.js";
 import { ReadXml, IStyleCollections, Element,getColor } from "./ReadXml.js";
-import { LuckyImageBase } from "./LuckyBase.js";
+import { FortuneImageBase } from "./FortuneBase.js";
 import { UDOC,FromEMF,ToContext2D  } from "../common/emf.js";
 
 
@@ -51,7 +51,7 @@ export class ImageList {
 }
 
 
-class Image extends LuckyImageBase {
+class Image extends FortuneImageBase {
 
     fromCol:number
     fromColOff:number

@@ -1,9 +1,9 @@
 import { columeHeader_word, columeHeader_word_index } from "./constant.js";
-import { IluckySheetSelection } from "../ToLuckySheet/ILuck.js";
+import { IfortuneSheetSelection } from "../ToFortuneSheet/IFortune.js";
 import { IattributeList, stringToNum} from "../ICommon.js";
 
 
-export function getRangetxt(range:IluckySheetSelection, sheettxt:string) {
+export function getRangetxt(range:IfortuneSheetSelection, sheettxt:string) {
 
     let row0 = range["row"][0], row1 = range["row"][1];
     let column0 = range["column"][0], column1 = range["column"][1];

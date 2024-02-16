@@ -1,12 +1,12 @@
-import { IluckySheetborderInfoCellForImp,IluckySheetCelldataValue,IluckySheetCelldataValueMerge,ILuckySheetCellFormat } from "./ILuck.js";
+import { IfortuneSheetborderInfoCellForImp,IfortuneSheetCelldataValue,IfortuneSheetCelldataValueMerge,IFortuneSheetCellFormat } from "./IFortune.js";
 import { ReadXml, Element, IStyleCollections,getColor,getlineStringAttr } from "./ReadXml.js";
 import {getXmlAttibute, getColumnWidthPixel, getRowHeightPixel,getcellrange, escapeCharacter, isChinese, isJapanese, isKoera,isContainMultiType} from "../common/method.js";
 import { ST_CellType, indexedColors, OEM_CHARSET,borderTypes,fontFamilys } from "../common/constant.js"
 import { IattributeList, stringToNum } from "../ICommon.js";
-import { LuckySheetborderInfoCellValueStyle,LuckySheetborderInfoCellForImp,LuckySheetborderInfoCellValue,LuckySheetCelldataBase,LuckySheetCelldataValue,LuckySheetCellFormat,LuckyInlineString } from "./LuckyBase.js";
+import { FortuneSheetborderInfoCellValueStyle,FortuneSheetborderInfoCellForImp,FortuneSheetborderInfoCellValue,FortuneSheetCelldataBase,FortuneSheetCelldataValue,FortuneSheetCellFormat,FortuneInlineString } from "./FortuneBase.js";
 
-export class LuckySheetCelldata extends LuckySheetCelldataBase{
-    _borderObject:IluckySheetborderInfoCellForImp
+export class FortuneSheetCelldata extends FortuneSheetCelldataBase{
+    _borderObject:IfortuneSheetborderInfoCellForImp
     _fomulaRef:string
     _formulaSi:string
     _formulaType:string
@@ -60,7 +60,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
         let clrScheme = this.styles["clrScheme"] as Element[];
 
         let sharedStrings = this.sharedStrings;
-        let cellValue = new LuckySheetCelldataValue();
+        let cellValue = new FortuneSheetCelldataValue();
 
         if(f!=null){
             let formula = f[0], attrList = formula.attributeList;
@@ -198,7 +198,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
 
             if(numFmtId!=undefined){
                 let numf = numfmts[parseInt(numFmtId)];
-                let cellFormat = new LuckySheetCellFormat();
+                let cellFormat = new FortuneSheetCellFormat();
                 cellFormat.fa = escapeCharacter(numf);
                 // console.log(numf, numFmtId, this.v);
                 cellFormat.t = t || 'n';
@@ -323,7 +323,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                     cellValue.ht = 0;
                 }
                 else if(horizontal=="centerContinuous"){
-                    cellValue.ht = 0;//luckysheet unsupport
+                    cellValue.ht = 0;//fortunesheet unsupport
                 }
                 else if(horizontal=="left"){
                     cellValue.ht = 1;
@@ -332,16 +332,16 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                     cellValue.ht = 2;
                 }
                 else if(horizontal=="distributed"){
-                    cellValue.ht = 0;//luckysheet unsupport
+                    cellValue.ht = 0;//fortunesheet unsupport
                 }
                 else if(horizontal=="fill"){
-                    cellValue.ht = 1;//luckysheet unsupport
+                    cellValue.ht = 1;//fortunesheet unsupport
                 }
                 else if(horizontal=="general"){
-                    cellValue.ht = 1;//luckysheet unsupport
+                    cellValue.ht = 1;//fortunesheet unsupport
                 }
                 else if(horizontal=="justify"){
-                    cellValue.ht = 0;//luckysheet unsupport
+                    cellValue.ht = 0;//fortunesheet unsupport
                 }
                 else{
                     cellValue.ht = 1;
@@ -356,10 +356,10 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                     cellValue.vt = 0;
                 }
                 else if(vertical=="distributed"){
-                    cellValue.vt = 0;//luckysheet unsupport
+                    cellValue.vt = 0;//fortunesheet unsupport
                 }
                 else if(vertical=="justify"){
-                    cellValue.vt = 0;//luckysheet unsupport
+                    cellValue.vt = 0;//fortunesheet unsupport
                 }
                 else if(vertical=="top"){
                     cellValue.vt = 1;
@@ -411,11 +411,11 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
 
             }
 
-            if(shrinkToFit!=undefined){//luckysheet unsupport
+            if(shrinkToFit!=undefined){//fortunesheet unsupport
 
             }
 
-            if(indent!=undefined){//luckysheet unsupport
+            if(indent!=undefined){//fortunesheet unsupport
 
             }
 
@@ -424,10 +424,10 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                 let border = borders[borderIdNum];
                 // this._borderId = borderIdNum;
 
-                let borderObject = new LuckySheetborderInfoCellForImp();
+                let borderObject = new FortuneSheetborderInfoCellForImp();
                 borderObject.rangeType = "cell";
                 // borderObject.cells = [];
-                let borderCellValue = new LuckySheetborderInfoCellValue();
+                let borderCellValue = new FortuneSheetborderInfoCellValue();
 
                 borderCellValue.row_index = this.r;
                 borderCellValue.col_index = this.c;
@@ -527,7 +527,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
 
                             let cellFormat = cellValue.ct;
                             if(cellFormat==null){
-                                cellFormat = new LuckySheetCellFormat();
+                                cellFormat = new FortuneSheetCellFormat();
                             }
 
                             if(cellFormat.s==null){
@@ -555,7 +555,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                                 }
 
                                 if((type!=preWordType && preWordType!=null) || i==textArray.length-1){
-                                    let InlineString = new LuckyInlineString();
+                                    let InlineString = new FortuneInlineString();
 
                                     InlineString.ff = preWholef;
 
@@ -593,7 +593,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                                             InlineString.v = wordText;
                                             cellFormat.s.push(InlineString);
 
-                                            let InlineStringLast = new LuckyInlineString();
+                                            let InlineStringLast = new FortuneInlineString();
                                             InlineStringLast.ff = ff;
                                             InlineStringLast.v = w;
                                             if(cellValue.fc!=null){
@@ -653,11 +653,11 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                             text = this.replaceSpecialWrap(text);
 
                             if(text.indexOf("\r\n")>-1 || text.indexOf("\n")>-1){
-                                let InlineString = new LuckyInlineString();
+                                let InlineString = new FortuneInlineString();
                                 InlineString.v = text;
                                 let cellFormat = cellValue.ct;
                                 if(cellFormat==null){
-                                    cellFormat = new LuckySheetCellFormat();
+                                    cellFormat = new FortuneSheetCellFormat();
                                 }
 
                                 if(cellValue.ff!=null){
@@ -701,12 +701,12 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                     }
                 }
                 else{
-                    let styles:LuckyInlineString[] = [];
+                    let styles:FortuneInlineString[] = [];
                     rFlag.forEach((r)=>{
                         let tFlag = r.getInnerElements("t");
                         let rPr = r.getInnerElements("rPr");
 
-                        let InlineString = new LuckyInlineString();
+                        let InlineString = new FortuneInlineString();
 
                         if(tFlag!=null && tFlag.length>0){
                             let text = tFlag[0].value;
@@ -832,7 +832,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
 
                     let cellFormat = cellValue.ct;
                     if(cellFormat==null){
-                        cellFormat = new LuckySheetCellFormat();
+                        cellFormat = new FortuneSheetCellFormat();
                     }
                     cellFormat.t = "inlineStr";
                     cellFormat.s = styles;
@@ -897,7 +897,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
         }
     }
 
-    private getBorderInfo(borders:Element[]):LuckySheetborderInfoCellValueStyle{
+    private getBorderInfo(borders:Element[]):FortuneSheetborderInfoCellValueStyle{
         if(borders==null){
             return null;
         }
@@ -919,7 +919,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
             }
         }
 
-        let ret = new LuckySheetborderInfoCellValueStyle();
+        let ret = new FortuneSheetborderInfoCellValueStyle();
         ret.style = borderTypes[style];
         ret.color = colorRet;
 
