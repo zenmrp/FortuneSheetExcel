@@ -1,4 +1,4 @@
-import { IluckysheetDataVerificationType } from "./ToLuckySheet/ILuck.js";
+import { IfortunesheetDataVerificationType } from "./ToFortuneSheet/IFortune.js";
 
 
 export interface IuploadfileList { 
@@ -18,7 +18,7 @@ export interface IattributeList {
 }
 
 export interface IDataVerificationMap {
-    [key: string]: IluckysheetDataVerificationType;
+    [key: string]: IfortunesheetDataVerificationType;
 }
 
 export interface IDataVerificationType2Map {

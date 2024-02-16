@@ -28,8 +28,8 @@ Interactively in a node repl:
 
 ```js
 f = await (await import("node:fs/promises")).readFile('/home/val/Downloads/Silkscreen.xlsx')
-console.log((await (await import("FortuneSheetExcel")).LuckyExcel.transformExcelToLucky(f)).toJsonString())
-// in dev: console.log((await (await import("./dist/main.js")).LuckyExcel.transformExcelToLucky(f)).toJsonString())
+console.log((await (await import("FortuneSheetExcel")).FortuneExcel.transformExcelToFortune(f)).toJsonString())
+// in dev: console.log((await (await import("./dist/main.js")).FortuneExcel.transformExcelToFortune(f)).toJsonString())
 ```
 
 ## Authors and acknowledgment

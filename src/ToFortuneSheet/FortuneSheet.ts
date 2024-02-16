@@ -1,14 +1,14 @@
-﻿import { IluckyImageBorder,IluckyImageCrop,IluckyImageDefault,IluckyImages,IluckySheetCelldata,IluckySheetCelldataValue,IMapluckySheetborderInfoCellForImp,IluckySheetborderInfoCellValue,IluckySheetborderInfoCellValueStyle,IFormulaSI,IluckySheetRowAndColumnLen,IluckySheetRowAndColumnHidden,IluckySheetSelection,IcellOtherInfo,IformulaList,IformulaListItem, IluckysheetHyperlink, IluckysheetHyperlinkType, IluckysheetDataVerification} from "./ILuck.js";
-import {LuckySheetCelldata} from "./LuckyCell.js";
+﻿import { IfortuneImageBorder,IfortuneImageCrop,IfortuneImageDefault,IfortuneImages,IfortuneSheetCelldata,IfortuneSheetCelldataValue,IMapfortuneSheetborderInfoCellForImp,IfortuneSheetborderInfoCellValue,IfortuneSheetborderInfoCellValueStyle,IFormulaSI,IfortuneSheetRowAndColumnLen,IfortuneSheetRowAndColumnHidden,IfortuneSheetSelection,IcellOtherInfo,IformulaList,IformulaListItem, IfortunesheetHyperlink, IfortunesheetHyperlinkType, IfortunesheetDataVerification} from "./IFortune.js";
+import {FortuneSheetCelldata} from "./FortuneCell.js";
 import { IattributeList } from "../ICommon.js";
 import {getXmlAttibute, getColumnWidthPixel, fromulaRef,getRowHeightPixel,getcellrange,generateRandomIndex,getPxByEMUs, getMultiSequenceToNum, getTransR1C1ToSequence, getPeelOffX14, getMultiFormulaValue} from "../common/method.js";
 import {borderTypes, COMMON_TYPE2, DATA_VERIFICATION_MAP, DATA_VERIFICATION_TYPE2_MAP, worksheetFilePath} from "../common/constant.js";
 import { ReadXml, IStyleCollections, Element,getColor } from "./ReadXml.js";
-import { LuckyFileBase,LuckySheetBase,LuckyConfig,LuckySheetborderInfoCellForImp,LuckySheetborderInfoCellValue,LuckysheetCalcChain,LuckySheetConfigMerge } from "./LuckyBase.js";
-import {ImageList} from "./LuckyImage.js";
+import { FortuneFileBase,FortuneSheetBase,FortuneConfig,FortuneSheetborderInfoCellForImp,FortuneSheetborderInfoCellValue,FortunesheetCalcChain,FortuneSheetConfigMerge } from "./FortuneBase.js";
+import {ImageList} from "./FortuneImage.js";
 import dayjs from "dayjs";
 
-export class LuckySheet extends LuckySheetBase {
+export class FortuneSheet extends FortuneSheetBase {
 
     private readXml:ReadXml
     private sheetFile:string
@@ -41,7 +41,7 @@ export class LuckySheet extends LuckySheetBase {
         this.name = sheetName;
         this.id = sheetId;
         this.order = sheetOrder.toString();
-        this.config = new LuckyConfig();
+        this.config = new FortuneConfig();
         this.celldata = [];
         this.mergeCells = this.readXml.getElementsByTagName("mergeCells/mergeCell", this.sheetFile);
         let clrScheme = this.styles["clrScheme"] as Element[];
@@ -56,9 +56,9 @@ export class LuckySheet extends LuckySheetBase {
             let selections = sheetView[0].getInnerElements("selection");
             if(selections!=null && selections.length>0){
                 activeCell = getXmlAttibute(selections[0].attributeList, "activeCell", "A1");
-                let range:IluckySheetSelection = getcellrange(activeCell, this.sheetList, sheetId);
-                this.luckysheet_select_save = [];
-                this.luckysheet_select_save.push(range);
+                let range:IfortuneSheetSelection = getcellrange(activeCell, this.sheetList, sheetId);
+                this.fortunesheet_select_save = [];
+                this.fortunesheet_select_save.push(range);
             }
         }
         this.showGridLines = showGridLines;
@@ -103,7 +103,7 @@ export class LuckySheet extends LuckySheetBase {
             let r = attrList.r , i = attrList.i, l = attrList.l, s = attrList.s, a = attrList.a, t = attrList.t;
 
             let range = getcellrange(r);
-            let chain = new LuckysheetCalcChain();
+            let chain = new FortunesheetCalcChain();
             chain.r = range.row[0];
             chain.c = range.column[0];
             chain.id = this.id;
@@ -150,10 +150,10 @@ export class LuckySheet extends LuckySheetBase {
 
                     // console.log(offsetRow, offsetCol, func);
 
-                    (cellValue.v as IluckySheetCelldataValue ).f = func;
+                    (cellValue.v as IfortuneSheetCelldataValue ).f = func;
                     
                     //添加共享公式链
-                    let chain = new LuckysheetCalcChain();
+                    let chain = new FortunesheetCalcChain();
                     chain.r = cellValue.r;
                     chain.c = cellValue.c;
                     chain.id = this.id;
@@ -167,7 +167,7 @@ export class LuckySheet extends LuckySheetBase {
         for(let key in cellOtherInfo.formulaList){
             if(!(key in formulaListExist)){
                 let formulaListItem = cellOtherInfo.formulaList[key];
-                let chain = new LuckysheetCalcChain();
+                let chain = new FortunesheetCalcChain();
                 chain.r = formulaListItem.r;
                 chain.c = formulaListItem.c;
                 chain.id = this.id;
@@ -192,7 +192,7 @@ export class LuckySheet extends LuckySheetBase {
                     continue;
                 }
                 let range = getcellrange(ref, this.sheetList, sheetId);
-                let mergeValue = new LuckySheetConfigMerge();
+                let mergeValue = new FortuneSheetConfigMerge();
                 mergeValue.r = range.row[0];
                 mergeValue.c = range.column[0];
                 mergeValue.rs = range.row[1]-range.row[0]+1;
@@ -271,7 +271,7 @@ export class LuckySheet extends LuckySheetBase {
                         imageObject.fixedLeft = 0;
                         imageObject.fixedTop = 0;
 
-                        let imageBorder:IluckyImageBorder = {
+                        let imageBorder:IfortuneImageBorder = {
                             color: "#000",
                             radius: 0,
                             style: "solid",
@@ -279,7 +279,7 @@ export class LuckySheet extends LuckySheetBase {
                         }
                         imageObject.border = imageBorder;
 
-                        let imageCrop:IluckyImageCrop = {
+                        let imageCrop:IfortuneImageCrop = {
                             height: cy_n,
                             offsetLeft: 0,
                             offsetTop: 0,
@@ -287,7 +287,7 @@ export class LuckySheet extends LuckySheetBase {
                         }
                         imageObject.crop = imageCrop;
 
-                        let imageDefault:IluckyImageDefault = {
+                        let imageDefault:IfortuneImageDefault = {
                             height: cy_n,
                             left: x_n,
                             top: y_n,
@@ -338,7 +338,7 @@ export class LuckySheet extends LuckySheetBase {
     }
 
     /**
-    * @desc This will convert cols/col to luckysheet config of column'width
+    * @desc This will convert cols/col to fortunesheet config of column'width
     */
     private generateConfigColumnLenAndHidden(){
         let cols = this.readXml.getElementsByTagName("cols/col", this.sheetFile);
@@ -388,7 +388,7 @@ export class LuckySheet extends LuckySheetBase {
     }
 
     /**
-    * @desc This will convert cols/col to luckysheet config of column'width
+    * @desc This will convert cols/col to fortunesheet config of column'width
     */
     private generateConfigRowLenAndHiddenAddCell():IcellOtherInfo{
         let rows = this.readXml.getElementsByTagName("sheetData/row", this.sheetFile);
@@ -439,7 +439,7 @@ export class LuckySheet extends LuckySheetBase {
                 let cells = row.getInnerElements("c");
                 for(let key in cells){
                     let cell = cells[key];
-                    let cellValue = new LuckySheetCelldata(cell, this.styles, this.sharedStrings, this.mergeCells,this.sheetFile, this.readXml);
+                    let cellValue = new FortuneSheetCelldata(cell, this.styles, this.sharedStrings, this.mergeCells,this.sheetFile, this.readXml);
                     if(cellValue._borderObject!=null){
                         if(this.config.borderInfo==null){
                             this.config.borderInfo = [];
@@ -459,10 +459,10 @@ export class LuckySheet extends LuckySheetBase {
                     //     }
                     //     else{
                     //         let border = borders[borderId];
-                    //         let borderObject = new LuckySheetborderInfoCellForImp();
+                    //         let borderObject = new FortuneSheetborderInfoCellForImp();
                     //         borderObject.rangeType = "cellGroup";
                     //         borderObject.cells = [];
-                    //         let borderCellValue = new LuckySheetborderInfoCellValue();
+                    //         let borderCellValue = new FortuneSheetborderInfoCellValue();
                             
                     //         let lefts = border.getInnerElements("left");
                     //         let rights = border.getInnerElements("right");
@@ -515,7 +515,7 @@ export class LuckySheet extends LuckySheetBase {
 
                         let fv;
                         if(cellValue.v!=null){
-                            fv = (cellValue.v as IluckySheetCelldataValue).f;
+                            fv = (cellValue.v as IfortuneSheetCelldataValue).f;
                         }
 
                         let refValue = {
@@ -537,7 +537,7 @@ export class LuckySheet extends LuckySheetBase {
                     }
 
                     //There may be formulas that do not appear in calcChain
-                    if(cellValue.v!=null && (cellValue.v as IluckySheetCelldataValue).f!=null){
+                    if(cellValue.v!=null && (cellValue.v as IfortuneSheetCelldataValue).f!=null){
                         let formulaCell:IformulaListItem = {
                             r:cellValue.r,
                             c:cellValue.c
@@ -555,11 +555,11 @@ export class LuckySheet extends LuckySheetBase {
     }
   
     /**
-     * luckysheet config of dataValidations
+     * fortunesheet config of dataValidations
      * 
-     * @returns {IluckysheetDataVerification} - dataValidations config
+     * @returns {IfortunesheetDataVerification} - dataValidations config
      */
-    private generateConfigDataValidations(): IluckysheetDataVerification {
+    private generateConfigDataValidations(): IfortunesheetDataVerification {
       
       let rows = this.readXml.getElementsByTagName(
         "dataValidations/dataValidation",
@@ -573,7 +573,7 @@ export class LuckySheet extends LuckySheetBase {
       
       rows = rows.concat(extLst);
   
-      let dataVerification: IluckysheetDataVerification = {};
+      let dataVerification: IfortunesheetDataVerification = {};
   
       for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
@@ -666,16 +666,16 @@ export class LuckySheet extends LuckySheetBase {
     }
   
     /**
-     * luckysheet config of hyperlink
+     * fortunesheet config of hyperlink
      * 
-     * @returns {IluckysheetHyperlink} - hyperlink config
+     * @returns {IfortunesheetHyperlink} - hyperlink config
      */
-    private generateConfigHyperlinks(): IluckysheetHyperlink {
+    private generateConfigHyperlinks(): IfortunesheetHyperlink {
       let rows = this.readXml.getElementsByTagName(
         "hyperlinks/hyperlink",
         this.sheetFile
       );
-      let hyperlink: IluckysheetHyperlink = {};
+      let hyperlink: IfortunesheetHyperlink = {};
       for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
         let attrList = row.attributeList;
@@ -684,7 +684,7 @@ export class LuckySheet extends LuckySheetBase {
             _display = getXmlAttibute(attrList, "display", null),
             _address = getXmlAttibute(attrList, "location", null),
             _tooltip = getXmlAttibute(attrList, "tooltip", null);
-        let _type: IluckysheetHyperlinkType = _address ? "internal" : "external";
+        let _type: IfortunesheetHyperlinkType = _address ? "internal" : "external";
   
         // external hyperlink
         if (!_address) {
@@ -703,7 +703,7 @@ export class LuckySheet extends LuckySheetBase {
             _address = findRid.attributeList["Target"];
             _type = findRid.attributeList[
               "TargetMode"
-            ]?.toLocaleLowerCase() as IluckysheetHyperlinkType;
+            ]?.toLocaleLowerCase() as IfortunesheetHyperlinkType;
           }
         }
 
@@ -727,7 +727,7 @@ export class LuckySheet extends LuckySheetBase {
       return hyperlink;
     }
 
-    // private getBorderInfo(borders:Element[]):LuckySheetborderInfoCellValueStyle{
+    // private getBorderInfo(borders:Element[]):FortuneSheetborderInfoCellValueStyle{
     //     if(borders==null){
     //         return null;
     //     }
@@ -746,7 +746,7 @@ export class LuckySheet extends LuckySheetBase {
     //         colorRet = getColor(color, clrScheme);
     //     }
 
-    //     let ret = new LuckySheetborderInfoCellValueStyle();
+    //     let ret = new FortuneSheetborderInfoCellValueStyle();
     //     ret.style = borderTypes[style];
     //     ret.color = colorRet;
 

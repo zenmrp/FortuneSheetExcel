@@ -1,13 +1,13 @@
-﻿import { ILuckyFile,IluckySheetRowAndColumnHidden,IluckySheetRowAndColumnLen} from "./ILuck.js";
-import { LuckySheet} from "./LuckySheet.js";
+﻿import { IFortuneFile,IfortuneSheetRowAndColumnHidden,IfortuneSheetRowAndColumnLen} from "./IFortune.js";
+import { FortuneSheet} from "./FortuneSheet.js";
 import {IuploadfileList, IattributeList} from "../ICommon.js";
 import {workBookFile, coreFile, appFile, stylesFile, sharedStringsFile,numFmtDefault,theme1File,calcChainFile,workbookRels, numFmtDefaultMap} from "../common/constant.js";
 import { ReadXml,IStyleCollections,Element } from "./ReadXml.js";
 import {getXmlAttibute} from "../common/method.js";
-import { LuckyFileBase,LuckyFileInfo,LuckySheetBase,LuckySheetCelldataBase,LuckySheetCelldataValue,LuckySheetCellFormat } from "./LuckyBase.js";
-import {ImageList} from "./LuckyImage.js";
+import { FortuneFileBase,FortuneFileInfo,FortuneSheetBase,FortuneSheetCelldataBase,FortuneSheetCelldataValue,FortuneSheetCellFormat } from "./FortuneBase.js";
+import {ImageList} from "./FortuneImage.js";
 
-export class LuckyFile {
+export class FortuneFile {
 
     private files:IuploadfileList
     private sheetNameList:IattributeList
@@ -17,8 +17,8 @@ export class LuckyFile {
     private sharedStrings:Element[]
     private calcChain:Element[]
     private imageList:ImageList
-    private sheets?:LuckySheet[]
-    private info?:LuckyFileInfo
+    private sheets?:FortuneSheet[]
+    private info?:FortuneFileInfo
 
     constructor(files:IuploadfileList, fileName:string) {
         this.files = files;
@@ -108,7 +108,7 @@ export class LuckyFile {
         let lastModifiedBy = this.readXml.getElementsByTagName("cp:lastModifiedBy", coreFile);
         let created = this.readXml.getElementsByTagName("dcterms:created", coreFile);
         let modified = this.readXml.getElementsByTagName("dcterms:modified", coreFile);
-        this.info = new LuckyFileInfo();
+        this.info = new FortuneFileInfo();
         this.info.name = this.fileName;
         this.info.creator = creator.length>0?creator[0].value:"";
         this.info.lastmodifiedby = lastModifiedBy.length>0?lastModifiedBy[0].value:"";
@@ -149,7 +149,7 @@ export class LuckyFile {
             }
 
             if(sheetFile!=null){
-                let sheet = new LuckySheet(sheetName, sheetId, order, isInitialCell,
+                let sheet = new FortuneSheet(sheetName, sheetId, order, isInitialCell,
                     {
                         sheetFile:sheetFile,
                         readXml:this.readXml,
@@ -177,7 +177,7 @@ export class LuckyFile {
     private columnWidthSet:number[] = [];
     private rowHeightSet:number[] = [];
 
-    private extendArray(index:number, sets:number[],def:number, hidden:IluckySheetRowAndColumnHidden, lens:IluckySheetRowAndColumnLen){
+    private extendArray(index:number, sets:number[],def:number, hidden:IfortuneSheetRowAndColumnHidden, lens:IfortuneSheetRowAndColumnLen){
         if(index<sets.length){
             return;
         }
@@ -205,7 +205,7 @@ export class LuckyFile {
         }
     }
 
-    private imagePositionCaculation(sheet:LuckySheet){
+    private imagePositionCaculation(sheet:FortuneSheet){
         let images = sheet.images, defaultColWidth = sheet.defaultColWidth, defaultRowHeight = sheet.defaultRowHeight;
         let colhidden = {};
         if(sheet.config.colhidden){
@@ -228,7 +228,7 @@ export class LuckyFile {
         }
 
         for(let key in images){
-            let imageObject:any = images[key];//Image, luckyImage
+            let imageObject:any = images[key];//Image, fortuneImage
             let fromCol = imageObject.fromCol;
             let fromColOff = imageObject.fromColOff;
             let fromRow = imageObject.fromRow;
@@ -352,21 +352,21 @@ export class LuckyFile {
     }
 
     /**
-    * @return LuckySheet file json
+    * @return FortuneSheet file json
     */
     Parse(){
         this.getWorkBookInfo();
         this.getSheetsFull();
     }
 
-    serialize(): LuckyFileBase {
-        const LuckyOutPutFile = new LuckyFileBase();
-        LuckyOutPutFile.info = this.info;
-        LuckyOutPutFile.sheets = [];
+    serialize(): FortuneFileBase {
+        const FortuneOutPutFile = new FortuneFileBase();
+        FortuneOutPutFile.info = this.info;
+        FortuneOutPutFile.sheets = [];
 
         for (const sheet of this.sheets!) {
-            const sheetout = new LuckySheetBase();
-            //let attrName = ["name","color","config","index","status","order","row","column","luckysheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","luckysheet_conditionformat_save","freezen","calcChain"];
+            const sheetout = new FortuneSheetBase();
+            //let attrName = ["name","color","config","index","status","order","row","column","fortunesheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","fortunesheet_conditionformat_save","freezen","calcChain"];
 
             if(sheet.name!=null){
                 sheetout.name = sheet.name;
@@ -403,8 +403,8 @@ export class LuckyFile {
                 sheetout.column = sheet.column;
             }
 
-            if(sheet.luckysheet_select_save!=null){
-                sheetout.luckysheet_select_save = sheet.luckysheet_select_save;
+            if(sheet.fortunesheet_select_save!=null){
+                sheetout.fortunesheet_select_save = sheet.fortunesheet_select_save;
             }
 
             if(sheet.scrollLeft!=null){
@@ -475,8 +475,8 @@ export class LuckyFile {
                 sheetout.pivotTable = sheet.pivotTable;
             }
 
-            if(sheet.luckysheet_conditionformat_save!=null){
-                sheetout.luckysheet_conditionformat_save = sheet.luckysheet_conditionformat_save;
+            if(sheet.fortunesheet_conditionformat_save!=null){
+                sheetout.fortunesheet_conditionformat_save = sheet.fortunesheet_conditionformat_save;
             }
 
             if(sheet.freezen!=null){
@@ -503,10 +503,10 @@ export class LuckyFile {
               sheetout.hide = sheet.hide;
             }
             
-            LuckyOutPutFile.sheets.push(sheetout);
+            FortuneOutPutFile.sheets.push(sheetout);
         }
 
-        return LuckyOutPutFile;
+        return FortuneOutPutFile;
     }
 
 

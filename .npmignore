@@ -24,9 +24,7 @@ npm-debug.log
 
 node_modules/
 
-dist/luckysheet/
 dist/*.map
-assets/luckysheet/
 src
 deploy.bat
 gulpfile.js

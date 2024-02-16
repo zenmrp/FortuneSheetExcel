@@ -1,12 +1,12 @@
-import { LuckyFile } from "./ToLuckySheet/LuckyFile.js";
-import type { LuckyFileBase } from "./ToLuckySheet/LuckyBase.ts";
+import { FortuneFile } from "./ToFortuneSheet/FortuneFile.js";
+import type { FortuneFileBase } from "./ToFortuneSheet/FortuneBase.ts";
 import { HandleZip } from "./HandleZip.js";
 
 export const transformExcelToFortune = async (
   excelFile: File,
-): Promise<LuckyFileBase> => {
+): Promise<FortuneFileBase> => {
   const files = await new HandleZip(excelFile).unzipFile();
-  const luckyFile = new LuckyFile(files, excelFile.name);
-  luckyFile.Parse();
-  return luckyFile.serialize();
+  const fortuneFile = new FortuneFile(files, excelFile.name);
+  fortuneFile.Parse();
+  return fortuneFile.serialize();
 };
