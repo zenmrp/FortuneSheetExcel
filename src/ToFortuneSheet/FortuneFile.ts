@@ -366,7 +366,7 @@ export class FortuneFile {
 
         for (const sheet of this.sheets!) {
             const sheetout = new FortuneSheetBase();
-            //let attrName = ["name","color","config","index","status","order","row","column","fortunesheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","fortunesheet_conditionformat_save","freezen","calcChain"];
+            //let attrName = ["name","color","config","index","status","order","row","column","luckysheet_select_save","scrollLeft","scrollTop","zoomRatio","showGridLines","defaultColWidth","defaultRowHeight","celldata","chart","isPivotTable","pivotTable","luckysheet_conditionformat_save","freezen","calcChain"];
 
             if(sheet.name!=null){
                 sheetout.name = sheet.name;
@@ -403,8 +403,8 @@ export class FortuneFile {
                 sheetout.column = sheet.column;
             }
 
-            if(sheet.fortunesheet_select_save!=null){
-                sheetout.fortunesheet_select_save = sheet.fortunesheet_select_save;
+            if(sheet.luckysheet_select_save!=null){
+                sheetout.luckysheet_select_save = sheet.luckysheet_select_save;
             }
 
             if(sheet.scrollLeft!=null){
@@ -475,8 +475,8 @@ export class FortuneFile {
                 sheetout.pivotTable = sheet.pivotTable;
             }
 
-            if(sheet.fortunesheet_conditionformat_save!=null){
-                sheetout.fortunesheet_conditionformat_save = sheet.fortunesheet_conditionformat_save;
+            if(sheet.luckysheet_conditionformat_save!=null){
+                sheetout.luckysheet_conditionformat_save = sheet.luckysheet_conditionformat_save;
             }
 
             if(sheet.freezen!=null){

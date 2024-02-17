@@ -16,7 +16,7 @@ export class FortuneSheetBase implements IfortuneSheet{
     order:string
     row:number
     column:number
-    fortunesheet_select_save:IfortuneSheetSelection[]
+    luckysheet_select_save:IfortuneSheetSelection[]
     scrollLeft:number
     scrollTop:number
     zoomRatio:number
@@ -30,7 +30,7 @@ export class FortuneSheetBase implements IfortuneSheet{
     isPivotTable:boolean
     pivotTable:IfortuneSheetPivotTable
 
-    fortunesheet_conditionformat_save:IfortunesheetConditionFormat[]
+    luckysheet_conditionformat_save:IfortunesheetConditionFormat[]
     freezen:IfortunesheetFrozen
 
     calcChain:IfortunesheetCalcChain[]
