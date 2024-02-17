@@ -57,8 +57,8 @@ export class FortuneSheet extends FortuneSheetBase {
             if(selections!=null && selections.length>0){
                 activeCell = getXmlAttibute(selections[0].attributeList, "activeCell", "A1");
                 let range:IfortuneSheetSelection = getcellrange(activeCell, this.sheetList, sheetId);
-                this.fortunesheet_select_save = [];
-                this.fortunesheet_select_save.push(range);
+                this.luckysheet_select_save = [];
+                this.luckysheet_select_save.push(range);
             }
         }
         this.showGridLines = showGridLines;

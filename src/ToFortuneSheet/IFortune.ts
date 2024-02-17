@@ -24,7 +24,7 @@ export interface IfortuneSheet{
     column:number, // Sheet the number of columns, contain blank cell
     // visibledatarow:number[],
     // visibledatacolumn:number[],
-    fortunesheet_select_save?:IfortuneSheetSelection[],//selection defines
+    luckysheet_select_save?:IfortuneSheetSelection[],//selection defines
     scrollLeft:number,//horizen scroll offset
     scrollTop:number,//verticel scroll offset
 
@@ -34,7 +34,7 @@ export interface IfortuneSheet{
     isPivotTable:boolean,
     pivotTable?:IfortuneSheetPivotTable,
 
-    fortunesheet_conditionformat_save?:IfortunesheetConditionFormat[],
+    luckysheet_conditionformat_save?:IfortunesheetConditionFormat[],
     freezen?:IfortunesheetFrozen,
 
     calcChain?:IfortunesheetCalcChain[],
