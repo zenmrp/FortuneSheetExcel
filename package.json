@@ -1,6 +1,6 @@
 {
   "name": "@zenmrp/fortune-sheet-excel",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An Excel-to-FortuneSheet import library",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
